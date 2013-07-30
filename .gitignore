@@ -19,3 +19,5 @@ savefile/
 projectile-bookmarks.eld
 session*
 ac-comphist.dat
+tramp
+flycheck-tramp
