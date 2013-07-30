@@ -1,37 +1,40 @@
-;; for ruby
+;;; 40-ruby.el --- Ruby development
+;;; Commentary:
 ;
 ; http://hmi-me.ciao.jp/wordpress/archives/1295
 
 ;; パッケージのインストール
-(setq package-list '(flymake-ruby ruby-end smart-compile rspec-mode))
-(dolist (package package-list)
+
+;;; Code:
+
+(dolist (package '(flymake-ruby ruby-end rspec-mode))
   (when (not (package-installed-p package))
     (package-install package)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; ruby-mode
-;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;
+;; ;; ruby-mode
+;; ;;
 
-(add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
 
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (abbrev-mode 1)
-             (electric-pair-mode t)
-             (electric-indent-mode t)
-             (electric-layout-mode t)))
+;; (add-hook 'ruby-mode-hook
+;;           '(lambda ()
+;;              (abbrev-mode 1)
+;;              (electric-pair-mode t)
+;;              (electric-indent-mode t)
+;;              (electric-layout-mode t)))
 
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (add-to-list 'ruby-encoding-map '(undecided . utf-8))))
+;; (add-hook 'ruby-mode-hook
+;;           '(lambda ()
+;;              (add-to-list 'ruby-encoding-map '(undecided . utf-8))))
 
-;; endを補間します
-(require 'ruby-end)
+;; ;; endを補間します
+;; (require 'ruby-end)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -39,23 +42,6 @@
 ;;
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; smart-compile
-;;
-(require 'smart-compile)
-
-; コンパイル前に自動保存
-(setq compilation-ask-about-save nil)
-
-; コンパイルコマンドを修正
-(add-to-list 'smart-compile-alist '("\\.rb\\'" . "ruby %f"))
-
-; キーバインドを設定
-(define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
-(define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -72,12 +58,14 @@
 (ad-activate 'rspec-compile)
 
 ;; パッケージのインストール
-(setq package-list '(haml-mode flymake-haml))
-(dolist (package package-list)
+(dolist (package '(haml-mode flymake-haml))
   (when (not (package-installed-p package))
     (package-install package)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; haml
+;;
 (setq auto-mode-alist
       (cons (cons "\\.haml$" 'haml-mode) auto-mode-alist))
 (autoload 'haml-mode "haml-mode.el" "haml-mode" t)
@@ -90,13 +78,16 @@
 (require 'flymake-haml)
 (add-hook 'haml-mode-hook 'flymake-haml-load)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; scss
+;;
+
 ;; パッケージのインストール
-(setq package-list '(scss-mode flymake-sass))
-(dolist (package package-list)
+(dolist (package '(scss-mode flymake-sass))
   (when (not (package-installed-p package))
     (package-install package)))
 
-;; scss
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (add-to-list 'auto-mode-alist '("\\.sass\\'" . scss-mode))
@@ -106,9 +97,9 @@
              (define-key haml-mode-map "\C-m" 'newline-and-indent)))
 (setq scss-compile-at-save nil) ; 保存時自動コンパイルしない
 
-;; sass/scssモードでauto-complete-modeを有効にする
-(add-to-list 'ac-modes 'sass-mode)
-(add-to-list 'ac-modes 'scss-mode)
+;; ;; sass/scssモードでauto-complete-modeを有効にする
+;; (add-to-list 'ac-modes 'sass-mode)
+;; (add-to-list 'ac-modes 'scss-mode)
 
 ;;
 ;; flymake-sass
@@ -116,9 +107,13 @@
 (require 'flymake-sass)
 (add-hook 'sass-mode-hook 'flymake-sass-load)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; javascript
+;;
+
 ;; パッケージのインストール
-(setq package-list '(js2-mode))
-(dolist (package package-list)
+(dolist (package '(js2-mode))
   (when (not (package-installed-p package))
     (package-install package)))
 
@@ -126,9 +121,13 @@
 (setq auto-mode-alist
       (cons (cons "\\.json$" 'js2-mode) auto-mode-alist))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; coffeescript
+;;
+
 ;; パッケージのインストール
-(setq package-list '(coffee-mode flymake-coffee))
-(dolist (package package-list)
+(dolist (package '(coffee-mode flymake-coffee))
   (when (not (package-installed-p package))
     (package-install package)))
 
@@ -153,4 +152,4 @@
 ;;
 (require 'flymake-coffee)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
-;; END
+;;; 40-ruby.el ends here
