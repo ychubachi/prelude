@@ -10,19 +10,12 @@
 
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key (kbd "C-c C-h") 'help-command)
-(global-set-key (kbd "C-z") 'shell)
+(global-set-key (kbd "C-z") 'eshell)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; 自作関数
 ;;
-
-;; full screen
-(defun my/fullscreen ()
-  (interactive)
-  (set-frame-parameter nil 'fullscreen
-                       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
-(global-set-key [f11] 'my/fullscreen)
 
 (defun my/open-init-folder()
   "設定フォルダを開きます．"
