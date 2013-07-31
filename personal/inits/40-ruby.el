@@ -16,11 +16,7 @@
 ;; ;; ruby-mode
 ;; ;;
 
-;; (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
-;; (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-;; (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
-;; (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-;; (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
 
 ;; (add-hook 'ruby-mode-hook
 ;;           '(lambda ()
@@ -36,10 +32,9 @@
 ;; ;; endを補間します
 ;; (require 'ruby-end)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; flymake-ruby
-;;
+;; ================================================================
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
@@ -57,15 +52,13 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 
-;; パッケージのインストール
-(dolist (package '(haml-mode flymake-haml))
-  (when (not (package-installed-p package))
-    (package-install package)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; haml
-;;
+;; ================================================================
+
+;; パッケージのインストール
+(prelude-require-packages '(haml-mode flymake-haml)
+
 (setq auto-mode-alist
       (cons (cons "\\.haml$" 'haml-mode) auto-mode-alist))
 (autoload 'haml-mode "haml-mode.el" "haml-mode" t)
@@ -78,10 +71,9 @@
 (require 'flymake-haml)
 (add-hook 'haml-mode-hook 'flymake-haml-load)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; scss
-;;
+;; ================================================================
 
 ;; パッケージのインストール
 (dolist (package '(scss-mode flymake-sass))
@@ -107,17 +99,11 @@
 (require 'flymake-sass)
 (add-hook 'sass-mode-hook 'flymake-sass-load)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; javascript
-;;
+;; ================================================================
 
-;; パッケージのインストール
-(dolist (package '(js2-mode))
-  (when (not (package-installed-p package))
-    (package-install package)))
-
-;; json
+(prelude-require-package '(js2-mode))
 (setq auto-mode-alist
       (cons (cons "\\.json$" 'js2-mode) auto-mode-alist))
 
