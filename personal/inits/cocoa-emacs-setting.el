@@ -3,9 +3,9 @@
 ;;; Code:
 
 ;; under mac, have Command as Meta and keep Option for localized input
-(setq mac-allow-anti-aliasing t)
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'none)
+;; (setq mac-allow-anti-aliasing t)
+;; (setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'none)
 
 (when (>= emacs-major-version 23)
   (set-face-attribute 'default nil
