@@ -21,3 +21,4 @@ session*
 ac-comphist.dat
 tramp
 flycheck-tramp
+.mc-lists.el
