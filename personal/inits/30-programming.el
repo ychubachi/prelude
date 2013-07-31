@@ -10,8 +10,8 @@
 (prelude-require-package 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-;; (define-key ac-complete-mode-map "\C-n" 'ac-next)
-;; (define-key ac-complete-mode-map "\C-p" 'ac-previous)
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 ;; ================================================================
 ;; 複数のカーソルを扱う
@@ -19,12 +19,19 @@
 
 (prelude-require-package 'multiple-cursors)
 (require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+;; ================================================================
+;; リージョンの拡大/縮小
+;; ================================================================
+
+(prelude-require-package 'expand-region)
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "M-=") 'er/contract-region)
 
 ;; ================================================================
 ;; リージョンがある間のキーバインディングを変更する
 ;; ================================================================
-;;
 
 (prelude-require-package 'region-bindings-mode)
 (require 'region-bindings-mode)
@@ -33,5 +40,6 @@
 (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
 (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
 (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
+(define-key region-bindings-mode-map "e" 'mc/edit-lines)
 
 ;;; 30-programming.el ends here
