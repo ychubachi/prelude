@@ -15,26 +15,15 @@
 ;; マウスで選択したリージョンをkill ringにコピーする
 (setq mouse-drag-copy-region t)
 
+;; ;; Use the clipboard, pretty please, so that copy/paste "works"
+(setq x-select-enable-clipboard t)
+
+(add-to-list 'default-frame-alist '(alpha . 80))
+
 ;; wdiredを用い，diredから直接ファイルをリネームできるようにします．
 (require 'wdired)
 (define-key dired-mode-map "r"
   'wdired-change-to-wdired-mode)
-
-;; ;; cp932エンコード時の表示を「P」とする
-;; (coding-system-put 'cp932 :mnemonic ?P)
-;; (coding-system-put 'cp932-dos :mnemonic ?P)
-;; (coding-system-put 'cp932-unix :mnemonic ?P)
-;; (coding-system-put 'cp932-mac :mnemonic ?P)
-
-;; ;; Use the clipboard, pretty please, so that copy/paste "works"
-;; (setq x-select-enable-clipboard t)
-
-;; ;; Navigate windows with M-<arrows>
-;; (windmove-default-keybindings 'meta)
-;; (setq windmove-wrap-around t)
-
-;; ;; avoid compiz manager rendering bugs
-;; (add-to-list 'default-frame-alist '(alpha . 80))
 
 ;; ;; flymake
 ;; ;; (require 'flymake)

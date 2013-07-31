@@ -9,6 +9,8 @@
 ;;
 
 (global-set-key "\C-h" 'delete-backward-char)
+; (define-key key-translation-map [?\C-h] [?\C-?])
+
 (global-set-key (kbd "C-c C-h") 'help-command)
 (global-set-key (kbd "C-z") 'eshell)
 

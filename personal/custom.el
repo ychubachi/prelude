@@ -11,6 +11,7 @@
  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (manoj-dark)))
  '(fci-rule-color "#383838")
+ '(outline-minor-mode-prefix "^O")
  '(prelude-clean-whitespace-on-save t)
  '(prelude-flyspell nil)
  '(shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell)))))
