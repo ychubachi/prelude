@@ -12,7 +12,7 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(fci-rule-color "#383838")
  '(graphviz-dot-preview-extension "pdf")
- '(outline-minor-mode-prefix "^O")
+ '(outline-minor-mode-prefix "")
  '(prelude-clean-whitespace-on-save t)
  '(prelude-flyspell nil)
  '(shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell)))))
