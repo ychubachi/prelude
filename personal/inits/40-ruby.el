@@ -152,4 +152,20 @@
 ;;
 (require 'flymake-coffee)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
+
+
+;; ================================================================
+;; 賢いコンパイル
+;; ================================================================
+
+(prelude-require-package 'smart-compile)
+(require 'smart-compile)
+;; コンパイル前に自動保存
+(setq compilation-ask-about-save nil)
+;; Ruby用キーバインドを設定
+(define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
+(define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
+;; コンパイルコマンドを変更
+(add-to-list 'smart-compile-alist '("\\.rb\\'" . "ruby %f"))
+
 ;;; 40-ruby.el ends here
