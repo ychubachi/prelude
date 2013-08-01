@@ -21,16 +21,13 @@
 (require 'multiple-cursors)
 
 ;; ================================================================
-;; リージョンがある間のキーバインディングを変更する
+;; yasnippet
+;; - http://fukuyama.co/yasnippet
 ;; ================================================================
 
-(prelude-require-package 'region-bindings-mode)
-(require 'region-bindings-mode)
-(region-bindings-mode-enable)
-(define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-(define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
-(define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
-(define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
-(define-key region-bindings-mode-map "e" 'mc/edit-lines)
+(prelude-require-package 'yasnippet)
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 
 ;;; 30-programming.el ends here

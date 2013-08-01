@@ -6,7 +6,7 @@
 ;; - http://qiita.com/akisute3@github/items/7c8ea3970e4cbb7baa97
 
 ;;; Code:
-(prelude-require-packages '(helm-descbinds helm-migemo helm-themes imenu-anywhere))
+(prelude-require-packages '(helm-descbinds helm-migemo helm-themes imenu-anywhere yasnippet helm-c-yasnippet))
 
 (require 'helm-config)
 (helm-mode 1)
@@ -27,6 +27,7 @@
 (require 'helm-migemo) ; ローマ字検索
 (require 'helm-themes)
 (require 'helm-imenu)
+(require 'helm-c-yasnippet)
 
 ;; TODO: yasnipetを追加する
 
