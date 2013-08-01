@@ -46,4 +46,4 @@
                   'append)
 (setq face-font-rescale-alist '(("Hiragino.*" . 1.2)))
 
-;; cocoa-emacs-setting ends here
+;;; cocoa-emacs-setting.el ends here
