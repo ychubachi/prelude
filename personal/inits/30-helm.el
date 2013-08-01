@@ -25,10 +25,10 @@
 (helm-descbinds-mode)
 
 (require 'helm-migemo) ; ローマ字検索
+(setq helm-use-migemo t)
+
 (require 'helm-themes)
 (require 'helm-imenu)
 (require 'helm-c-yasnippet)
-
-;; TODO: yasnipetを追加する
 
 ;;; 30-helm.el ends here

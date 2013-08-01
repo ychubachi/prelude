@@ -21,7 +21,7 @@
 (define-key 'personal-map (kbd "C-n") 'other-window)
 (define-key 'personal-map (kbd "C-p") 'my/other-window-backward)
 
-(define-key 'personal-map (kbd "m") 'helm-imenu-anywhere)
+(define-key 'personal-map (kbd "m") 'imenu)
 (define-key 'personal-map (kbd "h") 'helm-mini)
 
 (define-key 'personal-map (kbd "i") 'yas-insert-snippet)
