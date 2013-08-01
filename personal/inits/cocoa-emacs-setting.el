@@ -2,11 +2,25 @@
 ;;; Commentary:
 ;;; Code:
 
-;; under mac, have Command as Meta and keep Option for localized input
-;; (setq mac-allow-anti-aliasing t)
-;; (setq mac-command-modifier 'meta)
-;; (setq mac-option-modifier 'none)
+;; ================================================================
+;; Keyboard settings
+;; ================================================================
 
+;; option <-> meta
+(setq ns-command-modifier (quote meta))
+(setq ns-alternate-modifier (quote super))
+
+;;システムへ修飾キーを渡さない
+(setq mac-pass-control-to-system nil)
+(setq mac-pass-command-to-system nil)
+(setq mac-pass-option-to-system nil)
+
+;;; C-oで日本語切り替え
+(global-set-key "\C-o" 'toggle-input-method)
+
+;; ================================================================
+;; Fonts
+;; ================================================================
 (when (>= emacs-major-version 23)
   (set-face-attribute 'default nil
                       :family "monaco"
@@ -31,4 +45,5 @@
           (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
           (".*monaco-bold-.*-mac-roman" . 0.9)
           ("-cdac$" . 1.3))))
+
 ;; cocoa-emacs-setting ends here
