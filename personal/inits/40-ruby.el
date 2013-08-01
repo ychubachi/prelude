@@ -2,19 +2,16 @@
 ;;; Commentary:
 ;
 ; http://hmi-me.ciao.jp/wordpress/archives/1295
-
-;; パッケージのインストール
-
 ;;; Code:
 
 (dolist (package '(flymake-ruby ruby-end rspec-mode))
   (when (not (package-installed-p package))
     (package-install package)))
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;
-;; ;; ruby-mode
-;; ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; ruby-mode
+;;
 
 (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
 
@@ -57,7 +54,7 @@
 ;; ================================================================
 
 ;; パッケージのインストール
-(prelude-require-packages '(haml-mode flymake-haml)
+(prelude-require-packages '(haml-mode flymake-haml))
 
 (setq auto-mode-alist
       (cons (cons "\\.haml$" 'haml-mode) auto-mode-alist))
@@ -103,7 +100,7 @@
 ;; javascript
 ;; ================================================================
 
-(prelude-require-package '(js2-mode))
+(prelude-require-package 'js2-mode)
 (setq auto-mode-alist
       (cons (cons "\\.json$" 'js2-mode) auto-mode-alist))
 
