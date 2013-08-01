@@ -29,6 +29,8 @@
 
 (require 'helm-themes)
 (require 'helm-imenu)
+(setq imenu-auto-rescan t)
+
 (require 'helm-c-yasnippet)
 
 ;;; 30-helm.el ends here
