@@ -18,18 +18,12 @@
 ;; ;; Use the clipboard, pretty please, so that copy/paste "works"
 (setq x-select-enable-clipboard t)
 
+;; UI
 (add-to-list 'default-frame-alist '(alpha . 80))
 
 ;; wdiredを用い，diredから直接ファイルをリネームできるようにします．
 (require 'wdired)
 (define-key dired-mode-map "r"
   'wdired-change-to-wdired-mode)
-
-;; ;; flymake
-;; ;; (require 'flymake)
-;; ;; (global-set-key [f3] 'flymake-display-err-menu-for-current-line)
-;; ;; (global-set-key [f4] 'flymake-goto-next-error)
-
-;; (setq text-mode-hook (function (lambda () (auto-fill-mode 1))))
 
 ;;; 00-builtin.el ends here
