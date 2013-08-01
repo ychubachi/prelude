@@ -12,6 +12,15 @@
 (define-prefix-command 'personal-map)
 (global-set-key (kbd "C-q") 'personal-map)
 (define-key 'personal-map (kbd "q") 'quoted-insert)
+
+(defun my/other-window-backward ()
+  "Move to other window backward."
+  (interactive)
+  (other-window -1))
+
+(define-key 'personal-map (kbd "C-n") 'other-window)
+(define-key 'personal-map (kbd "C-p") 'my/other-window-backward)
+
 (define-key 'personal-map (kbd "m") 'helm-imenu-anywhere)
 (define-key 'personal-map (kbd "h") 'helm-mini)
 
