@@ -16,7 +16,30 @@
 (setq mac-pass-option-to-system nil)
 
 ;;; C-oで日本語切り替え
+(mac-input-method-mode t)
 (global-set-key "\C-o" 'toggle-input-method)
+
+;; かな
+(mac-set-input-method-parameter
+ "com.google.inputmethod.Japanese.base" 'cursor-color 'green)
+
+;; 英数字
+(mac-set-input-method-parameter
+ "com.google.inputmethod.Japanese.Roman" 'cursor-color 'red)
+
+;; change cursor type
+(mac-set-input-method-parameter
+ "com.google.inputmethod.Japanese.base" 'cursor-type 'box)
+
+;; ;; change title
+;; (mac-set-input-method-parameter
+;;  "com.google.inputmethod.Japanese.base" 'title "J")
+
+;; *** know current input source name
+;; (mac-get-current-input-source)
+
+;; *** know current face setting of input source
+;; (mac-get-input-method-parameter input-source-name key)
 
 ;; ================================================================
 ;; Fonts
