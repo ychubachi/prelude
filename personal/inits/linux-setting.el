@@ -1,11 +1,5 @@
 ;;; linux.el --- My settings for Emacs in Linux
 ;;; Commentary:
-;;; Change Log: Created on 2013-07-30
-;;; Code:
-
-;;
-;; Settings for IBUS
-;;
 
 ;; 注意: in ~/.Xresourcesに
 ;;   Emacs*useXIM:	false
@@ -14,26 +8,41 @@
 ;; Thanks: http://www11.atwiki.jp/s-irie/pages/21.html#basic
 ;; Thanks: http://d.hatena.ne.jp/iRiE/20100530/1275212234
 
+;;; Change Log: Created on 2013-07-30
+;;; Code:
+
+;; ================================================================
+;; Settings for IBUS
+;; ================================================================
+
 (require 'ibus)
+
 ;; Turn on ibus-mode automatically after loading .emacs
 (add-hook 'after-init-hook 'ibus-mode-on)
 
 ;; Use C-SPC for Set Mark command
 (ibus-define-common-key ?\C-\s nil)
+
 ;; Use C-/ for Undo command
 (ibus-define-common-key ?\C-/ nil)
-;; Toggle input status by C-o
-(global-set-key (kbd "C-o") 'ibus-toggle)
 
 ;; Change cursor color depending on IBus status
 (setq ibus-cursor-color '("green" "red" "blue"))
 
 ;; Set the window position
 (setq ibus-prediction-window-position t)
+
+;; Toggle input status
+(global-set-key (kbd "C-o") 'ibus-toggle)
+;; (define-key 'personal-map (kbd "C-o") 'ibus-toggle)
+
 ;; Use henkan key to enable IBus
 (global-set-key [henkan] 'ibus-enable)
+(define-key 'personal-map (kbd "C-e") 'ibus-enable)
+
 ;; Use muhenkan key to disable IBus
 (global-set-key [muhenkan] 'ibus-disable)
+(define-key 'personal-map (kbd "C-d") 'ibus-disable)
 
 ;;
 ;; Font設定
