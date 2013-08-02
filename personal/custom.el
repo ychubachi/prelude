@@ -18,6 +18,7 @@
  '(outline-minor-mode-prefix "")
  '(prelude-clean-whitespace-on-save t)
  '(prelude-flyspell nil)
+ '(prelude-guru nil)
  '(shell-pop-autocd-to-working-dir nil)
  '(shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell)))))
  '(shell-pop-universal-key "C-z")
