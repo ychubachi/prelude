@@ -53,7 +53,7 @@
 ;; key-chordの設定をする
 ;; ================================================================
 
-(key-chord-define-global "pp"     'my/other-window-backward)
-(key-chord-define-global "nn"     'other-window)
+(key-chord-define-global "tt"     'my/other-window-backward)
+(key-chord-define-global "hh"     'other-window)
 
 ;;; 90-personal-map.el ends here
