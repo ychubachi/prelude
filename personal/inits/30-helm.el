@@ -1,38 +1,92 @@
 ;;; 30-helm-mode.el -- Additional ettings for helm
 ;;; Commentary:
 
+;; Home · emacs-helm/helm Wiki
 ;; - https://github.com/emacs-helm/helm/wiki
+
+;; AnythingからHelmに移行しました - memo
+;; - http://sleepboy-zzz.blogspot.jp/2012/09/anythinghelm.html
+
+;; NTEmacs @ ウィキ - helm を使うための設定 - @ｳｨｷﾓﾊﾞｲﾙ
 ;; - http://www49.atwiki.jp/ntemacs/m/pages/32.html
+
+;; Emacs - helm-mode 有効時でも helm-find-files は無効にする - Qiita [キータ]
 ;; - http://qiita.com/akisute3@github/items/7c8ea3970e4cbb7baa97
 
+;; NOTE: 逆引用符は`,'の引数を評価し、 リスト構造にその値を入れます。
+;;
+;; GNU Emacs Lispリファレンス・マニュアル: 12. マクロ
+;; - http://www.fan.gr.jp/~ring/doc/elisp_19/elisp-jp_14.html#IDX592
+
 ;;; Code:
-(prelude-require-packages '(helm-descbinds helm-migemo helm-themes imenu-anywhere yasnippet helm-c-yasnippet))
+
+(eval-when-compile (require 'cl))
+
+(prelude-require-packages '(helm-descbinds
+                            helm-migemo
+                            helm-themes
+                            imenu-anywhere
+                            yasnippet helm-c-yasnippet))
 
 (require 'helm-config)
-(helm-mode 1)
+;; (helm-mode 1)
+(require 'helm-command)
+(require 'helm-descbinds)
+
+(setq helm-idle-delay             0.3
+      helm-input-idle-delay       0.3
+      helm-candidate-number-limit 200)
+
+;; ================================================================
+;; Keybindings
+;; ================================================================
 
 ;; C-h でバックスペースと同じように文字を削除できるようにする
-(require 'helm)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
-(require 'helm-files)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
 ;; ミニバッファで C-k 入力時にカーソル以降を削除する
 (setq helm-delete-minibuffer-contents-from-point t)
 
-;; describe-bindings(C-h b)のhelm版
-(require 'helm-descbinds)
-(helm-descbinds-mode)
+(let ((key-and-func
+       `(
+         (,(kbd "M-x")     helm-M-x)
+         (,(kbd "M-y")     helm-show-kill-ring)
+         (,(kbd "C-x C-f") helm-find-files)
+;;         (,(kbd "C-r")   helm-for-files)
+;;         (,(kbd "C-^")   helm-c-apropos)
+;;         (,(kbd "C-;")   helm-resume)
+;;         (,(kbd "M-s")   helm-occur)
+;;         (,(kbd "M-z")   helm-do-grep)
+;;         (,(kbd "C-S-h") helm-descbinds)
+         )))
+  (loop for (key func) in key-and-func
+        do (global-set-key key func)))
 
-(require 'helm-migemo) ; ローマ字検索
+;; ================================================================
+;; helm-migemo - ローマ字検索
+;; ================================================================
+
+(require 'helm-migemo)
 (setq helm-use-migemo t)
 
-(require 'helm-themes)
+(defadvice helm-c-apropos
+  (around ad-helm-apropos activate)
+  "候補が表示されないときがあるので migemoらないように設定."
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+
+(defadvice helm-M-x
+  (around ad-helm-M-x activate)
+  "候補が表示されないときがあるので migemoらないように設定."
+  (let ((helm-use-migemo nil))
+    ad-do-it))
 
 (require 'helm-imenu)
-
 (setq imenu-auto-rescan t)
 (setq imenu-after-jump-hook (lambda () (recenter 10))) ; 選択後の表示位置を調整
+
+(require 'helm-themes)
 
 (require 'helm-c-yasnippet)
 
