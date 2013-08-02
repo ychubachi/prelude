@@ -6,17 +6,22 @@
 ;;; Code:
 
 ;; ================================================================
-;; 個人用キーマップを設定する
+;; 自作マクロ
 ;; ================================================================
-
-(define-prefix-command 'personal-map)
-(global-set-key (kbd "C-q") 'personal-map)
-(define-key 'personal-map (kbd "q") 'quoted-insert)
 
 (defun my/other-window-backward ()
   "Move to other window backward."
   (interactive)
   (other-window -1))
+
+;; ================================================================
+;; 個人用キーマップを設定する
+;; ================================================================
+
+(define-prefix-command 'personal-map)
+(global-set-key (kbd "C-q") 'personal-map)
+
+(define-key 'personal-map (kbd "q") 'quoted-insert)
 
 (define-key 'personal-map (kbd "C-n") 'other-window)
 (define-key 'personal-map (kbd "C-p") 'my/other-window-backward)
@@ -43,5 +48,12 @@
 (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
 (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
 (define-key region-bindings-mode-map "e" 'mc/edit-lines)
+
+;; ================================================================
+;; key-chordの設定をする
+;; ================================================================
+
+(key-chord-define-global "pp"     'my/other-window-backward)
+(key-chord-define-global "nn"     'other-window)
 
 ;;; 90-personal-map.el ends here
