@@ -3,26 +3,28 @@
 ;;; Change Log: Created on 2013-07-30
 ;;; Code:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; Key-bindings
+;; ================================================================
+
+;; C-hをDELにします
 ;;
-
+;; ↓の方法だと，dbus時に誤動作します．
+;; (define-key key-translation-map [?\C-h] [?\C-?])
+;;
 (global-set-key "\C-h" 'delete-backward-char)
-; (define-key key-translation-map [?\C-h] [?\C-?])
-
 (global-set-key (kbd "C-c C-h") 'help-command)
+
 (global-set-key (kbd "C-z") 'eshell)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; ================================================================
 ;; 自作関数
-;;
+;; ================================================================
 
 (defun my/open-init-folder()
   "設定フォルダを開きます．"
   (interactive)
-  (dired "~/.emacs.d/"))
+  (dired "~/.emacs.d/personal"))
 (global-set-key (kbd "<f1>") 'my/open-init-folder)
 
 (defun my/open-note()
