@@ -30,4 +30,10 @@
 (yas-global-mode 1)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 
+;; ================================================================
+;; Emacs Lisp
+;; ================================================================
+
+(add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+
 ;;; 30-programming.el ends here
