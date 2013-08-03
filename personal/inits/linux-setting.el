@@ -1,4 +1,4 @@
-;;; linux.el --- My settings for Emacs in Linux
+;;; linux-setting.el --- My settings for Emacs in Linux
 ;;; Commentary:
 
 ;; 注意: in ~/.Xresourcesに
@@ -44,23 +44,21 @@
 (global-set-key [muhenkan] 'ibus-disable)
 (define-key 'personal-map (kbd "C-d") 'ibus-disable)
 
-;;
+;; ================================================================
 ;; Font設定
+;; ================================================================
 ;;
-
-;; http://stickydiary.blog88.fc2.com/blog-entry-107.html
-;; 14 px 以外にも 12 px (9 pt)、16 px (12 pt)、18 px (13.5 pt)、
-;; 20 px (15 pt)、22 px (16.5 pt) あたりが有効かと思います。
 ;; mmm あいうえお｜｜｜｜｜
 ;; iii ｜｜｜｜｜｜｜｜｜｜
+
 (set-default-font "Ricty:pixelsize=14:spacing=0")
 
-
-;;
+;; ================================================================
 ;; dbus for YaTeX
+;; ================================================================
 ;;
-
 ;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Emacs#v19f2543
+
 (require 'dbus)
 
 (defun un-urlify (fname-or-url)
@@ -86,3 +84,29 @@
        :session nil "/org/gnome/evince/Window/0"
        "org.gnome.evince.Window" "SyncSource"
        'evince-inverse-search))
+
+;; ================================================================
+;; ローマ字で日本語をインクリメンタルサーチ
+;; ================================================================
+;;
+;; # 注意
+;; * cmigemoコマンドがインストールされていること．
+;; * locate migemo-dictで辞書の場所調べ，設定してください．
+;; # 参考
+;; * https://github.com/emacs-jp/migemo
+
+(prelude-require-package 'migemo)
+(require 'migemo)
+
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-q" "--emacs"))
+
+(setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+
+(load-library "migemo")
+(migemo-init)
+
+;;; linux-setting.el ends here
