@@ -18,9 +18,6 @@
 ;; ;; Use the clipboard, pretty please, so that copy/paste "works"
 (setq x-select-enable-clipboard t)
 
-;; UI
-(add-to-list 'default-frame-alist '(alpha . 80))
-
 ;; wdiredを用い，diredから直接ファイルをリネームできるようにします．
 (require 'wdired)
 (define-key dired-mode-map "r"
