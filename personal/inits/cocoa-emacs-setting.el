@@ -39,11 +39,21 @@
 ;; |+-+-+-+-+-|
 ;; |imimimimim|
 
-(set-fontset-font (frame-parameter nil 'font)
-                  'unicode
-                  (font-spec :family "Hiragino Maru Gothic ProN")
-                  nil
-                  'append)
-(setq face-font-rescale-alist '(("Hiragino.*" . 1.2)))
+(when (x-list-fonts "Ricty")
+  (let* ((size 14)
+         (asciifont "Ricty")
+         (jpfont "Ricty")
+         (h (* size 10))
+         (fontspec)
+         (jp-fontspec))
+    (set-face-attribute 'default nil :family asciifont :height h)
+    (setq fontspec (font-spec :family asciifont))
+    (setq jp-fontspec (font-spec :family jpfont))
+    (set-fontset-font nil 'japanese-jisx0208 jp-fontspec)
+    (set-fontset-font nil 'japanese-jisx0212 jp-fontspec)
+    (set-fontset-font nil 'japanese-jisx0213-1 jp-fontspec)
+    (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
+    (set-fontset-font nil '(#x0080 . #x024F) fontspec)
+    (set-fontset-font nil '(#x0370 . #x03FF) fontspec)))
 
 ;;; cocoa-emacs-setting.el ends here
