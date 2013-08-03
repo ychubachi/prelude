@@ -7,7 +7,7 @@
 ;; Key-bindings
 ;; ================================================================
 
-;; C-hをDELにします
+;; C-hをDELにする
 ;;
 ;; ↓の方法だと，dbus時に誤動作します．
 ;; (define-key key-translation-map [?\C-h] [?\C-?])
@@ -15,7 +15,25 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key (kbd "C-c C-h") 'help-command)
 
+;; C-zでeshellを起動
 (global-set-key (kbd "C-z") 'eshell)
+
+;; ================================================================
+;; 時刻の表示
+;; ================================================================
+
+(require 'time)
+(setq display-time-24hr-format t)
+(setq display-time-string-forms '(24-hours ":" minutes))
+(display-time-mode t)
+
+;; ================================================================
+;; diredから直接ファイルをリネームできるようにする
+;; ================================================================
+
+(require 'wdired)
+(define-key dired-mode-map "r"
+  'wdired-change-to-wdired-mode)
 
 ;; ================================================================
 ;; 自作関数
