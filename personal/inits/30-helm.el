@@ -82,6 +82,9 @@
   (let ((helm-use-migemo nil))
     ad-do-it))
 
+;; ================================================================
+;; その他
+;; ================================================================
 (require 'helm-imenu)
 (setq imenu-auto-rescan t)
 (setq imenu-after-jump-hook (lambda () (recenter 10))) ; 選択後の表示位置を調整
@@ -89,5 +92,11 @@
 (require 'helm-themes)
 
 (require 'helm-c-yasnippet)
+
+;; ================================================================
+;; package listをhelmで選択
+;; (This package is installed in vendor directory.)
+;; ================================================================
+(require 'helm-package)
 
 ;;; 30-helm.el ends here

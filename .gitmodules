@@ -1,0 +1,3 @@
+[submodule "vendor/emacs-helm-package"]
+	path = vendor/emacs-helm-package
+	url = git@github.com:syohex/emacs-helm-package.git
