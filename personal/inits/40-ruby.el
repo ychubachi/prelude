@@ -88,4 +88,26 @@
 (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
 (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
 
+;; ================================================================
+;; Emacsで保存時にFirefoxのタブを探してリロード - Qiita [キータ]
+;; - http://qiita.com/hakomo/items/9a99115f8911b55957bb
+;; ================================================================
+(require 'moz)
+
+(defun my/reload-firefox ()
+  "Reload firefox."
+  (interactive)
+  (comint-send-string (inferior-moz-process) "BrowserReload();"))
+
+(defun my/run-rake-yard ()
+  "Run rake yard."
+  (interactive)
+  (shell-command "rake yard"))
+
+(define-key ruby-mode-map (kbd "C-c y") (lambda ()
+                                          (interactive)
+                                          (my/run-rake-yard)
+                                          (my/reload-firefox)))
+
+
 ;;; 40-ruby.el ends here
