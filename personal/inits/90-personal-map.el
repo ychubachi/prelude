@@ -19,9 +19,7 @@
 ;; ================================================================
 
 (define-prefix-command 'personal-map)
-(global-set-key (kbd "C-q") 'personal-map)
-
-(define-key 'personal-map (kbd "q") 'quoted-insert)
+(global-set-key (kbd "C-.") 'personal-map)
 
 (define-key 'personal-map (kbd "C-n") 'other-window)
 (define-key 'personal-map (kbd "C-p") 'my/other-window-backward)
