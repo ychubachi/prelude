@@ -89,7 +89,6 @@
              (define-key reftex-mode-map (concat YaTeX-prefix ">") 'YaTeX-comment-region)
              (define-key reftex-mode-map (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
 
-
 ;; ================================================================
 ;; Outline minor mode for YaTeX
 ;; See http://www.math.s.chiba-u.ac.jp/~matsu/emacs/emacs20/outline.html
@@ -123,13 +122,15 @@
             ((equal (substring title 0 4) "appe") 0)
             (t (length title))))))
 
-;; IPA Fonts
-(setq YaTeX-dvipdf-command "dvipdfmx -f ptex-ipa")
-
 ;;
 ;; BibTeX
 (add-hook 'bibtex-mode-hook
           '(lambda ()
              (outline-minor-mode)))
+
+;; ================================================================
+;; IPA Fonts
+;; ================================================================
+(setq YaTeX-dvipdf-command "dvipdfmx -f ptex-ipa")
 
 ;;; cocoa-emacs-yatex.el ends here
