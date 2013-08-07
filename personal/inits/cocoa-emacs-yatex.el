@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;; YaTeX - TeX Wiki - http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX#qe563613
 ;;; Code:
+(global-set-key (kbd "C-c C-t") nil)
+
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
       (append '(("\\.tex$" . yatex-mode)
@@ -45,8 +47,8 @@
                               ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/usr/texbin/texindy")
                               ((string-match "pdflatex\\|latex" tex-command) "/usr/texbin/makeindex")
                               (t "/usr/texbin/mendex")))
-(setq dvi2-command "/usr/bin/open -a Preview")
-;(setq dvi2-command "/usr/bin/open -a Skim")
+;(setq dvi2-command "/usr/bin/open -a Preview")
+(setq dvi2-command "/usr/bin/open -a Skim")
 ;(setq dvi2-command "/usr/bin/open -a TeXShop")
 ;(setq dvi2-command "/usr/bin/open -a TeXworks")
 ;(setq dvi2-command "/usr/bin/open -a Firefox")
