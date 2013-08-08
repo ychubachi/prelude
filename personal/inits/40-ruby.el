@@ -39,7 +39,8 @@
                   (rx (group (* " "))
                       bow
                       (or "begin" "case" "class" "def" "else" "elsif"
-                          "ensure" "if" "module" "rescue" "when" "unless")
+                          "ensure" "if" "module" "rescue" "when" "unless"
+                          "private")
                       eow))
              (outline-minor-mode))))
 
