@@ -80,6 +80,19 @@
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 
 ;; ================================================================
+;; Use the right Ruby with Emacs and rbenv - Fist of Senn
+;; - http://blog.senny.ch/blog/2013/02/11/use-the-right-ruby-with-emacs-and-rbenv/
+;; ================================================================
+(prelude-require-package 'rbenv)
+
+;; ;; Setting rbenv path
+;; (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
+;;                        (getenv "HOME") "/.rbenv/bin:"
+;;                        (getenv "PATH")))
+;; (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
+;;                       (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+
+;; ================================================================
 ;; 賢いコンパイル
 ;; ================================================================
 
@@ -109,6 +122,5 @@
                                           (interactive)
                                           (my/run-rake-yard)
                                           (my/reload-firefox)))
-
 
 ;;; 40-ruby.el ends here
