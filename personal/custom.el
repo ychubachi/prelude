@@ -19,6 +19,7 @@
  '(fci-rule-color "#383838")
  '(graphviz-dot-preview-extension "pdf")
  '(mouse-drag-copy-region t)
+ '(org-agenda-files (quote ("~/Dropbox/Note/main.org" "~/Dropbox/Note/index.org")))
  '(outline-minor-mode-prefix "")
  '(prelude-clean-whitespace-on-save t)
  '(prelude-flyspell nil)
