@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(prelude-require-package 'org-mode)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(prelude-require-package 'org)
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
