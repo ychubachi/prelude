@@ -34,6 +34,10 @@
 (define-key 'personal-map (kbd "y") 'helm-c-yas-complete)
 (define-key 'personal-map (kbd "s") 'helm-c-yas-create-snippet-on-region)
 
+(if (eq system-type 'darwin)
+    (define-key 'personal-map (kbd "p") 'skim-forward-search)
+  (define-key 'personal-map (kbd "p") 'evince-forward-search))
+
 ;; ================================================================
 ;; リージョンがある間のキーバインディングを変更する
 ;; ================================================================
