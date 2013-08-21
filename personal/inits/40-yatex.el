@@ -1,11 +1,12 @@
 ;;; 40-yatex.el --- YaTeX
 ;;; Commentary:
 ;;; Code:
+(global-set-key (kbd "C-c C-t") nil)
+
 ;; ================================================================
 ;; YaTeX - TeX Wiki
 ;; - http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX#nec42ee2
 ;; ================================================================
-
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
       (append '(("\\.tex$" . yatex-mode)
@@ -18,37 +19,6 @@
 (setq YaTeX-kanji-code nil)
 (setq YaTeX-use-LaTeX2e t)
 (setq YaTeX-use-AMS-LaTeX t)
-(setq YaTeX-dvi2-command-ext-alist
-      '(("texworks\\|evince\\|okular\\|zathura\\|qpdfview\\|pdfviewer\\|mupdf\\|xpdf\\|firefox\\|chromium\\|acroread\\|pdfopen" . ".pdf")))
-(setq tex-command "ptex2pdf -l -ot '-synctex=1'")
-;(setq tex-command "ptex2pdf -l -u -ot '-synctex=1'")
-;(setq tex-command "pdfplatex")
-;(setq tex-command "pdfplatex2")
-;(setq tex-command "pdfuplatex")
-;(setq tex-command "pdfuplatex2")
-;(setq tex-command "pdflatex -synctex=1")
-;(setq tex-command "lualatex -synctex=1")
-;(setq tex-command "luajitlatex -synctex=1")
-;(setq tex-command "xelatex -synctex=1")
-;(setq tex-command "latexmk")
-;(setq tex-command "latexmk -e '$latex=q/platex %O -synctex=1 %S/' -e '$bibtex=q/pbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi")
-;(setq tex-command "latexmk -e '$latex=q/platex %O -synctex=1 %S/' -e '$bibtex=q/pbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvips=q/dvips %O -z -f %S | convbkmk -g > %D/' -e '$ps2pdf=q/ps2pdf %O %S %D/' -norc -gg -pdfps")
-;(setq tex-command "latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi")
-;(setq tex-command "latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvips=q/dvips %O -z -f %S | convbkmk -u > %D/' -e '$ps2pdf=q/ps2pdf %O %S %D/' -norc -gg -pdfps")
-;(setq tex-command "latexmk -e '$pdflatex=q/pdflatex %O -synctex=1 %S/' -e '$bibtex=q/bibtex %O %B/' -e '$makeindex=q/makeindex %O -o %D %S/' -norc -gg -pdf")
-;(setq tex-command "latexmk -e '$pdflatex=q/lualatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -lualatex")
-;(setq tex-command "latexmk -e '$pdflatex=q/luajitlatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -lualatex")
-;(setq tex-command "latexmk -e '$pdflatex=q/xelatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -xelatex")
-(setq bibtex-command (cond ((string-match "uplatex\\|-u" tex-command) "upbibtex")
-                           ((string-match "platex" tex-command) "pbibtex")
-                           ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "bibtexu")
-                           ((string-match "pdflatex\\|latex" tex-command) "bibtex")
-                           (t "pbibtex")))
-(setq makeindex-command (cond ((string-match "uplatex\\|-u" tex-command) "mendex")
-                              ((string-match "platex" tex-command) "mendex")
-                              ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "texindy")
-                              ((string-match "pdflatex\\|latex" tex-command) "makeindex")
-                              (t "mendex")))
 
 ;; ================================================================
 ;; RefTeX with YaTeX
@@ -98,5 +68,16 @@
           '(lambda ()
              (outline-minor-mode)))
 
+;; ================================================================
+;; IPA Fonts
+;; ================================================================
+(setq YaTeX-dvipdf-command "dvipdfmx -f ptex-ipa")
+
+;; ================================================================
+;; auto-fill-mode
+;; ================================================================
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+             (auto-fill-mode 1)))
 
 ;;; 40-yatex.el ends here
