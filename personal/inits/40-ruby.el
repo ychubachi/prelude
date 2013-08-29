@@ -83,7 +83,7 @@
 ;; Use the right Ruby with Emacs and rbenv - Fist of Senn
 ;; - http://blog.senny.ch/blog/2013/02/11/use-the-right-ruby-with-emacs-and-rbenv/
 ;; ================================================================
-(prelude-require-package 'rbenv)
+;; (prelude-require-package 'rbenv)
 
 ;; ;; Setting rbenv path
 ;; (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"

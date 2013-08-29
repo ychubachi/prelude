@@ -1,22 +1,6 @@
 ;;; linux-yatex.el --- YaTeX
 ;;; Commentary:
-;;
-;; YaTeX - TeX Wiki - http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX#nec42ee2
 ;;; Code:
-
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-(setq auto-mode-alist
-      (append '(("\\.tex$" . yatex-mode)
-                ("\\.ltx$" . yatex-mode)
-                ("\\.cls$" . yatex-mode)
-                ("\\.sty$" . yatex-mode)
-                ("\\.clo$" . yatex-mode)
-                ("\\.bbl$" . yatex-mode)) auto-mode-alist))
-(setq YaTeX-inhibit-prefix-letter t)
-(setq YaTeX-kanji-code nil)
-(setq YaTeX-use-LaTeX2e t)
-(setq YaTeX-use-AMS-LaTeX t)
 (setq YaTeX-dvi2-command-ext-alist
       '(("texworks\\|evince\\|okular\\|zathura\\|qpdfview\\|pdfviewer\\|mupdf\\|xpdf\\|firefox\\|chromium\\|acroread\\|pdfopen" . ".pdf")))
 (setq tex-command "ptex2pdf -l -ot '-synctex=1'")
@@ -48,6 +32,7 @@
                               ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "texindy")
                               ((string-match "pdflatex\\|latex" tex-command) "makeindex")
                               (t "mendex")))
+
 (setq dvi2-command "evince")
 ;(setq dvi2-command "okular --unique")
 ;(setq dvi2-command "zathura -s -x \"emacsclient --no-wait +%{line} %{input}\"")
@@ -77,10 +62,6 @@
                           (widen)
                           (count-lines (point-min) (point))))
       (buffer-name)))))
-
-(add-hook 'yatex-mode-hook
-          '(lambda ()
-             (define-key YaTeX-mode-map (kbd "C-c e") 'evince-forward-search)))
 
 (require 'dbus)
 
@@ -188,54 +169,5 @@
 (add-hook 'yatex-mode-hook
           '(lambda ()
              (auto-fill-mode -1)))
-
-;;
-;; RefTeX with YaTeX
-;;
-;(add-hook 'yatex-mode-hook 'turn-on-reftex)
-(add-hook 'yatex-mode-hook
-          '(lambda ()
-             (reftex-mode 1)
-             (define-key reftex-mode-map (concat YaTeX-prefix ">") 'YaTeX-comment-region)
-             (define-key reftex-mode-map (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
-
-;; ================================================================
-;; Outline minor mode for YaTeX
-;; See http://www.math.s.chiba-u.ac.jp/~matsu/emacs/emacs20/outline.html
-;; ================================================================
-(setq outline-minor-mode-prefix "\C-c\C-o")
-
-(add-hook 'yatex-mode-hook
-          '(lambda () (outline-minor-mode t)))
-
-(make-variable-buffer-local 'outline-regexp)
-(add-hook
- 'yatex-mode-hook
- (function
-  (lambda ()
-    (progn
-      (setq outline-level 'latex-outline-level)
-      (setq outline-regexp
-            (concat "[ \t]*\\\\\\(documentstyle\\|documentclass\\|"
-                    "chapter\\|section\\|subsection\\|subsubsection\\)"
-                    "\\*?[ \t]*[[{]")
-     )))))
-
-(make-variable-buffer-local 'outline-level)
-(setq-default outline-level 'outline-level)
-(defun latex-outline-level ()
-  (save-excursion
-    (looking-at outline-regexp)
-    (let ((title (buffer-substring (match-beginning 1) (match-end 1))))
-      (cond ((equal (substring title 0 4) "docu") 15)
-            ((equal (substring title 0 4) "chap") 0)
-            ((equal (substring title 0 4) "appe") 0)
-            (t (length title))))))
-
-;;
-;; BibTeX
-(add-hook 'bibtex-mode-hook
-          '(lambda ()
-             (outline-minor-mode)))
 
 ;;; linux-yatex.el ends here
