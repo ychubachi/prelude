@@ -1,3 +1,6 @@
 [submodule "vendor/emacs-helm-package"]
 	path = vendor/emacs-helm-package
 	url = git@github.com:syohex/emacs-helm-package.git
+[submodule "vendor/org-mode"]
+	path = vendor/org-mode
+	url = git://orgmode.org/org-mode.git
