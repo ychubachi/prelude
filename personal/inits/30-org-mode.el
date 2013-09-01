@@ -2,7 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(prelude-require-package 'org)
+;; (prelude-require-package 'org)
+
+;; (dolist (package '(org))
+;;   (when (not (package-installed-p package))
+;;     (package-install package)))
+
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
