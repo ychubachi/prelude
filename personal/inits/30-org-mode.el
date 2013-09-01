@@ -19,7 +19,7 @@
 (require 'ox-latex)
 (require 'ox-beamer)
 
-(setq org-export-in-background t)
+(setq org-export-in-background nil)
 
 (cond ((eq system-type 'gnu/linux)
        (setq org-latex-pdf-process '("latexmk -e '$pdflatex=q/lualatex %S/' -e '$bibtex=q/bibtexu %B/' -e '$makeindex=q/texindy -o %D %S/' -norc -gg -lualatex %f"))
