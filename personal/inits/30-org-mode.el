@@ -65,7 +65,8 @@
 \\usepackage{latexsym}
 \\usepackage{amssymb}
 \\usepackage{amstext}
-\\usepackage{hyperref}"
+\\usepackage{hyperref}
+\\hypersetup{pdfencoding=auto,colorlinks=true}"
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
