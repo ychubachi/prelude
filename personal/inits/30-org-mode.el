@@ -19,13 +19,13 @@
 (require 'ox-latex)
 (require 'ox-beamer)
 
-(setq org-export-in-background nil)
+(setq org-export-in-background t)
 
 (cond ((eq system-type 'gnu/linux)
-       (setq org-latex-pdf-process '("latexmk -e '$pdflatex=q/lualatex %S/' -e '$bibtex=q/bibtexu %B/' -e '$makeindex=q/texindy -o %D %S/' -norc -gg -lualatex %f"))
+       (setq org-latex-pdf-process '("latexmk             -e '$pdflatex=q/lualatex %S/' -e '$bibtex=q/bibtexu %B/' -e '$makeindex=q/texindy -o %D %S/' -norc -gg -lualatex %f"))
        (setq org-file-apps '(("pdf" . "evince %s"))))
       ((eq system-type 'darwin)
-       (setq org-latex-pdf-process "/usr/texbin/latexmk -e '$pdflatex=q/luajitlatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -lualatex")
+       (setq org-latex-pdf-process '("/usr/texbin/latexmk -e '$pdflatex=q/lualatex %S/' -e '$bibtex=q/bibtexu %B/' -e '$makeindex=q/texindy -o %D %S/' -norc -gg -lualatex %f"))
        (setq org-file-apps '(("pdf" . "/usr/bin/open -a Skim %s")))))
 
 (setq org-latex-default-class "ltjsarticle")
@@ -50,6 +50,7 @@
                "\\documentclass[presentation]{beamer}
 [NO-DEFAULT-PACKAGES]
 \\usepackage{luatexja}
+\\usepackage[ipa]{luatexja-preset}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage{fixltx2e}
