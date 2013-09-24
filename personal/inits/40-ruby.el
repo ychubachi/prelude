@@ -66,6 +66,10 @@
 ;; ================================================================
 ;; flymake関係
 ;; ================================================================
+(prelude-require-package 'flymake-ruby)
+(prelude-require-package 'flymake-haml)
+(prelude-require-package 'flymake-sass)
+(prelude-require-package 'flymake-coffee)
 
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
