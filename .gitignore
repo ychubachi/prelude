@@ -19,6 +19,7 @@ savefile/
 projectile-bookmarks.eld
 session*
 ac-comphist.dat
+.cask
 tramp
 flycheck-tramp
 .mc-lists.el
