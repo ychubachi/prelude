@@ -14,6 +14,11 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; ================================================================
+;; Markdown export
+;; ================================================================
+(require 'ox-md)
+
+;; ================================================================
 ;; LaTeX export
 ;; ================================================================
 (require 'ox-latex)
@@ -66,7 +71,13 @@
 \\usepackage{amssymb}
 \\usepackage{amstext}
 \\usepackage{hyperref}
-\\hypersetup{pdfencoding=auto,colorlinks=true}"
+\\hypersetup{pdfencoding=auto,colorlinks=true}
+\\AtBeginSection[]
+{
+  \\begin{frame}<beamer>{Outline}
+  \\tableofcontents[currentsection,currentsubsection]
+  \\end{frame}
+}"
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
